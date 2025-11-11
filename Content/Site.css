@@ -1,0 +1,514 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* ===== CÀI ĐẶT CHUNG ===== */
+:root {
+    --primary-color: #007bff;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --sidebar-bg: #1a222f; /* Màu tối như trong hình */
+    --sidebar-text: #aeb2b7;
+    --sidebar-text-hover: #ffffff;
+    --sidebar-active-border: #007bff;
+    --top-bar-bg: #ffffff;
+    --main-bg: #f4f7f6; /* Màu nền nội dung */
+    --text-color: #333;
+    --border-color: #e0e0e0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--main-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* ===== THANH HEADER BÊN TRÊN (TOP BAR) ===== */
+.top-bar {
+    height: 60px;
+    background-color: var(--top-bar-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f0f2f5;
+    border-radius: 20px;
+    padding: 8px 15px;
+    width: 400px;
+}
+
+    .search-bar i {
+        color: #888;
+        margin-right: 10px;
+    }
+
+    .search-bar input {
+        border: none;
+        background: transparent;
+        outline: none;
+        width: 100%;
+        font-size: 14px;
+    }
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-group {
+    position: relative;
+    cursor: pointer;
+}
+
+    .icon-group i {
+        font-size: 18px;
+        color: #555;
+    }
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: var(--danger-color);
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .user-profile img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+/* ===== CẤU TRÚC BODY TRANG ===== */
+.page-body {
+    display: flex;
+    padding-top: 60px; /* Khoảng cách cho top-bar fixed */
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 240px;
+    background-color: var(--sidebar-bg);
+    height: calc(100vh - 60px);
+    position: fixed;
+    left: 0;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 15px 0;
+}
+
+.nav-header {
+    font-size: 11px;
+    color: #6a737f;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.nav-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent; /* Đường viền active */
+}
+
+    .nav-menu li a i {
+        width: 16px; /* Căn chỉnh icon cho thẳng hàng */
+        text-align: center;
+    }
+
+    .nav-menu li a:hover {
+        background-color: rgba(255,255,255, 0.05);
+        color: var(--sidebar-text-hover);
+    }
+
+    .nav-menu li a.active {
+        background-color: rgba(0, 123, 255, 0.1);
+        color: var(--sidebar-text-hover);
+        border-left-color: var(--sidebar-active-border);
+    }
+
+/* ===== NỘI DUNG CHÍNH ===== */
+.main-content {
+    flex-grow: 1;
+    margin-left: 240px; /* Khoảng cách cho sidebar fixed */
+    padding: 25px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .content-header h1 {
+        font-size: 24px;
+    }
+
+/* ===== NÚT (BUTTONS) ===== */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: opacity 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+
+    .btn i {
+        font-size: 12px;
+    }
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-edit {
+    background-color: var(--success-color);
+    color: white;
+    padding: 8px 12px;
+}
+
+.btn-delete {
+    background-color: var(--danger-color);
+    color: white;
+    padding: 8px 12px;
+}
+
+/* ===== BẢNG DỮ LIỆU ===== */
+.content-table {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    table th, table td {
+        padding: 15px;
+        border-bottom: 1px solid var(--border-color);
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    table th {
+        background-color: #f8f9fa;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #555;
+    }
+
+    table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    table tbody tr:hover {
+        background-color: #fdfdfd;
+    }
+
+td.action-column {
+    display: flex;
+    gap: 8px;
+}
+
+
+/* ===== MODAL (POP-UP) - Giữ nguyên CSS từ trước ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .close-btn:hover {
+        color: #333;
+    }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="date"],
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+.form-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* GIAO DIỆN LƯỚI PHIM MỚI */
+
+/* Đặt màu nền cho trang giống trong hình */
+body {
+    background-color: #fdfaf3 !important; /* Dùng !important để ghi đè nếu cần */
+}
+
+/* Container chính chứa lưới phim */
+.movie-grid-container {
+    display: flex; /* Sử dụng Flexbox để xếp hàng */
+    flex-wrap: wrap; /* Cho phép xuống hàng */
+    gap: 25px; /* Khoảng cách giữa các phim */
+    padding: 20px 0;
+    justify-content: center; /* Căn giữa các cột phim */
+}
+
+/* Mỗi thẻ phim */
+.movie-card {
+    width: 450px; /* Chiều rộng cố định cho mỗi thẻ phim (Poster + Info) */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Khối thông tin chữ bên phải */
+.movie-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+    /* Các dòng thông tin (Thể loại, Thời lượng...) */
+    .movie-info p {
+        margin: 3px 0;
+    }
+
+/* ▼▼ THÊM KHỐI CSS NÀY VÀO ▼▼ */
+/* Container cho các nút Sửa/Xóa */
+.movie-admin-links {
+    margin-top: 10px; /* Khoảng cách với dòng "Khởi chiếu" */
+    display: flex; /* Xếp nút ngang hàng */
+    gap: 8px; /* Khoảng cách giữa 2 nút */
+}
+
+/* Nút Admin chung (dựa trên .buy-ticket-btn) */
+.btn-admin-edit, .btn-admin-delete {
+    color: white !important; /* Quan trọng: Ghi đè màu link */
+    padding: 6px 12px; /* Nhỏ hơn một chút */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: opacity 0.3s;
+}
+
+    .btn-admin-edit:hover, .btn-admin-delete:hover {
+        opacity: 0.8;
+    }
+
+/* Màu riêng cho nút */
+.btn-admin-edit {
+    background-color: #007bff; /* Xanh dương cho Sửa */
+}
+
+.btn-admin-delete {
+    background-color: #dc3545; /* Đỏ cho Xóa */
+}
+
+
+/* Tên phim */
+.movie-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Khối nội dung (Poster + Info) xếp ngang */
+.movie-content {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; /* Khoảng cách giữa Poster và Info */
+}
+
+/* ▼▼ THAY ĐỔI 2: CSS CHO LINK POSTER ▼▼ */
+/* Container chứa Poster (để định vị nhãn) */
+.movie-poster-container {
+    position: relative;
+    width: 160px; /* Chiều rộng cố định cho poster */
+    flex-shrink: 0; /* Không co lại */
+}
+
+    /* Thêm hiệu ứng hover cho link poster */
+    .movie-poster-container a {
+        display: block;
+        text-decoration: none;
+    }
+
+        .movie-poster-container a:hover .movie-poster {
+            opacity: 0.8; /* Làm mờ ảnh khi di chuột */
+        }
+
+/* Poster phim */
+.movie-poster {
+    width: 100%;
+    height: 237px; /* Chiều cao cố định (tỷ lệ 160x237) */
+    object-fit: cover; /* Giữ tỷ lệ hình ảnh */
+    border: 1px solid #ccc;
+    transition: opacity 0.3s ease; /* Thêm hiệu ứng mờ */
+}
+
+/* Nhãn tuổi (T16, T18, PG) */
+.age-rating {
+    position: absolute; /* Định vị tuyệt đối so với poster */
+    top: 8px;
+    left: 8px;
+    background-color: #d90000;
+    color: white;
+    padding: 4px 7px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1.5px solid white;
+    z-index: 2; /* Nằm trên ảnh */
+}
+
+/* Khối thông tin chữ bên phải */
+.movie-info {
+    flex: 1; /* Tự động lấp đầy phần còn lại */
+    display: flex;
+    flex-direction: column; /* Xếp thông tin theo chiều dọc */
+    font-size: 0.9rem;
+    color: #555;
+}
+
+    /* Các dòng thông tin (Thể loại, Thời lượng...) */
+    .movie-info p {
+        margin: 3px 0;
+    }
+
+/* ▼▼ THAY ĐỔI 3: XÓA BỎ KHỐI CSS CŨ ▼▼ */
+/* Khối .movie-links, .btn-link-edit... đã bị XÓA BỎ khỏi đây */

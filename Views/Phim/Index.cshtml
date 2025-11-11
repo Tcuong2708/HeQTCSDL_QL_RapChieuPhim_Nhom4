@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QuanLyRapChieuPhim.Models.PHIM>
+
+@{
+    ViewBag.Title = "Danh sách Phim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Thêm phim mới", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<div class="movie-grid-container">
+
+    <div class="movie-grid-container">
+
+        @foreach (var item in Model)
+        {
+            <div class="movie-card">
+
+                <h4 class="movie-title" title="@item.TENPHIM">
+                    @Html.DisplayFor(modelItem => item.TENPHIM)
+                </h4>
+
+                <div class="movie-content">
+
+                    <div class="movie-poster-container">
+                        <a href="@Url.Action("Details", "Phim", new { id = item.ID })">
+                            <img src="@Url.Content("~/" + item.HINH)" alt="@item.TENPHIM" class="movie-poster" />
+                        </a>
+                        @if (!string.IsNullOrEmpty(item.XEPHANG))
+                        {
+                            <span class="age-rating">@item.XEPHANG</span>
+                        }
+                    </div>
+
+                    <div class="movie-info">
+                        <p>
+                            <strong>Thể loại:</strong> @Html.DisplayFor(modelItem => item.THELOAI)
+                        </p>
+                        <p>
+                            <strong>Thời lượng:</strong> @Html.DisplayFor(modelItem => item.THOILUONG)
+                        </p>
+                        <p>
+                            <strong>Khởi chiếu:</strong>
+                            @Html.DisplayFor(modelItem => item.KHOICHIEU, "{0:dd/MM/yyyy hh:mm:ss tt}")
+                        </p>
+
+                        <div class="movie-admin-links">
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn-admin-edit" })
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.ID }, new { @class = "btn-admin-delete" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
