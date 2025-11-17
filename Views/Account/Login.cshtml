@@ -1,0 +1,188 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Đăng nhập hệ thống";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+
+    <style>
+        /* Đặt lại font chữ và làm sạch */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Căn giữa toàn bộ */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa; /* Màu nền xám rất nhạt */
+        }
+
+        /* Hộp đăng nhập */
+        .login-box {
+            width: 100%;
+            max-width: 360px;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+        }
+
+            /* Tiêu đề "Đăng nhập" */
+            .login-box h2 {
+                text-align: center;
+                color: #4338CA; /* Màu tím/xanh giống trong hình */
+                font-weight: 700;
+                margin-top: 0;
+                margin-bottom: 30px;
+                letter-spacing: 1px;
+            }
+
+        /* Nhóm chứa ô input */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+            /* Ô input (Username, Password) */
+            .input-group input {
+                width: 100%;
+                padding: 14px 16px;
+                border: none;
+                background-color: #f3f4f6; /* Màu nền xám cho ô input */
+                border-radius: 6px;
+                box-sizing: border-box; /* Quan trọng để padding không làm vỡ layout */
+                font-size: 16px;
+            }
+
+        /* Nhóm chứa "Remember me" */
+        .options-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #555;
+        }
+
+            .options-group input[type="checkbox"] {
+                margin-right: 8px;
+                /* Style cho checkbox giống trong hình */
+                appearance: none;
+                -webkit-appearance: none;
+                width: 16px;
+                height: 16px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                cursor: pointer;
+                position: relative;
+            }
+
+                .options-group input[type="checkbox"]:checked {
+                    background-color: #4338CA;
+                    border-color: #4338CA;
+                }
+
+                    /* Dấu tick (v) bên trong checkbox */
+                    .options-group input[type="checkbox"]:checked::after {
+                        content: '\2713'; /* Mã unicode cho dấu tick */
+                        font-size: 12px;
+                        color: white;
+                        position: absolute;
+                        left: 2px;
+                        top: 0px;
+                    }
+
+        /* Nút "Đăng nhập" */
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            background-color: #4F46E5; /* Màu tím/xanh */
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .login-btn:hover {
+                background-color: #4338CA; /* Màu đậm hơn khi hover */
+            }
+
+        /* Khung báo lỗi (nếu đăng nhập sai) */
+        .validation-summary-errors {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+            .validation-summary-errors ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+
+        /* ▼▼ CSS CHO LINK ĐĂNG KÝ ▼▼ */
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .register-link a {
+                color: #4338CA;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+                .register-link a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Đăng nhập</h2>
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <!-- Hiển thị lỗi chung (ví dụ: sai pass) -->
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="input-group">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Tên người dùng" required autofocus />
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required />
+            </div>
+
+            <div class="options-group">
+                <input type="checkbox" id="rememberMe" name="rememberMe" value="true">
+                <label for="rememberMe">Ghi nhớ tôi</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary login-btn">Đăng nhập</button>
+
+            <!-- ▼▼ THÊM LẠI LINK ĐĂNG KÝ ▼▼ -->
+            <div class="register-link">
+                @* Link này trỏ đến Action "Register" trong "AccountController" *@
+                @Html.ActionLink("Chưa có tài khoản? Đăng ký ngay", "Register", "Account")
+            </div>
+        }
+    </div>
+</body>
+</html>

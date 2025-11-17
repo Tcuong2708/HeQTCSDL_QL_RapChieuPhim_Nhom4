@@ -1,0 +1,63 @@
+﻿@model IEnumerable<QuanLyRapChieuPhim.Models.VE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GHE.MAGHE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KHACHHANG.MAKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUATCHIEU.MASUAT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAVE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYMUA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GIAVE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GHE.MAGHE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.MAKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUATCHIEU.MASUAT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAVE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYMUA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GIAVE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

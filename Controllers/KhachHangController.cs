@@ -11,107 +11,107 @@ using QuanLyRapChieuPhim.Models;
 
 namespace QuanLyRapChieuPhim.Controllers
 {
-    public class PhimController : Controller
+    public class KhachHangController : Controller
     {
         private QuanLyRapChieuPhimContext db = new QuanLyRapChieuPhimContext();
 
-        // GET: Phim
+        // GET: KhachHang
         public ActionResult Index()
         {
-            return View(db.PHIMs.ToList());
+            return View(db.KHACHHANGs.ToList());
         }
 
-        // GET: Phim/Details/5
+        // GET: KhachHang/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            if (kHACHHANG == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(kHACHHANG);
         }
 
-        // GET: Phim/Create
+        // GET: KhachHang/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Phim/Create
+        // POST: KhachHang/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MAPHIM,TENPHIM,THELOAI,THOILUONG,DIENVIENCHINH,KHOICHIEU,NGONNGU,XEPHANG,HINH")] PHIM pHIM)
+        public ActionResult Create([Bind(Include = "ID,MAKH,TENKH,NGAYSINH,GIOITINH,SDT")] KHACHHANG kHACHHANG)
         {
             if (ModelState.IsValid)
             {
-                db.PHIMs.Add(pHIM);
+                db.KHACHHANGs.Add(kHACHHANG);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(pHIM);
+            return View(kHACHHANG);
         }
 
-        // GET: Phim/Edit/5
+        // GET: KhachHang/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            if (kHACHHANG == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(kHACHHANG);
         }
 
-        // POST: Phim/Edit/5
+        // POST: KhachHang/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MAPHIM,TENPHIM,THELOAI,THOILUONG,DIENVIENCHINH,KHOICHIEU,NGONNGU,XEPHANG,HINH")] PHIM pHIM)
+        public ActionResult Edit([Bind(Include = "ID,MAKH,TENKH,NGAYSINH,GIOITINH,SDT")] KHACHHANG kHACHHANG)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pHIM).State = EntityState.Modified;
+                db.Entry(kHACHHANG).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(pHIM);
+            return View(kHACHHANG);
         }
 
-        // GET: Phim/Delete/5
+        // GET: KhachHang/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            if (kHACHHANG == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(kHACHHANG);
         }
 
-        // POST: Phim/Delete/5
+        // POST: KhachHang/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PHIM pHIM = db.PHIMs.Find(id);
-            db.PHIMs.Remove(pHIM);
+            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            db.KHACHHANGs.Remove(kHACHHANG);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

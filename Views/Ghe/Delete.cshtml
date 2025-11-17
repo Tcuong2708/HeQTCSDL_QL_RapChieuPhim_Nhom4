@@ -1,0 +1,64 @@
+﻿@model QuanLyRapChieuPhim.Models.GHE
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>GHE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONGCHIEU.MAPH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONGCHIEU.MAPH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAGHE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAGHE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAP_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAP_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VITRI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VITRI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOAIGHE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAIGHE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

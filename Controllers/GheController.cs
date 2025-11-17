@@ -11,107 +11,112 @@ using QuanLyRapChieuPhim.Models;
 
 namespace QuanLyRapChieuPhim.Controllers
 {
-    public class PhimController : Controller
+    public class GheController : Controller
     {
         private QuanLyRapChieuPhimContext db = new QuanLyRapChieuPhimContext();
 
-        // GET: Phim
+        // GET: Ghe
         public ActionResult Index()
         {
-            return View(db.PHIMs.ToList());
+            var gHEs = db.GHEs.Include(g => g.PHONGCHIEU);
+            return View(gHEs.ToList());
         }
 
-        // GET: Phim/Details/5
+        // GET: Ghe/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            GHE gHE = db.GHEs.Find(id);
+            if (gHE == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(gHE);
         }
 
-        // GET: Phim/Create
+        // GET: Ghe/Create
         public ActionResult Create()
         {
+            ViewBag.PHONGCHIEU_ID = new SelectList(db.PHONGCHIEUs, "ID", "MAPH");
             return View();
         }
 
-        // POST: Phim/Create
+        // POST: Ghe/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MAPHIM,TENPHIM,THELOAI,THOILUONG,DIENVIENCHINH,KHOICHIEU,NGONNGU,XEPHANG,HINH")] PHIM pHIM)
+        public ActionResult Create([Bind(Include = "ID,MAGHE,PHONGCHIEU_ID,RAP_ID,VITRI,LOAIGHE")] GHE gHE)
         {
             if (ModelState.IsValid)
             {
-                db.PHIMs.Add(pHIM);
+                db.GHEs.Add(gHE);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(pHIM);
+            ViewBag.PHONGCHIEU_ID = new SelectList(db.PHONGCHIEUs, "ID", "MAPH", gHE.PHONGCHIEU_ID);
+            return View(gHE);
         }
 
-        // GET: Phim/Edit/5
+        // GET: Ghe/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            GHE gHE = db.GHEs.Find(id);
+            if (gHE == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            ViewBag.PHONGCHIEU_ID = new SelectList(db.PHONGCHIEUs, "ID", "MAPH", gHE.PHONGCHIEU_ID);
+            return View(gHE);
         }
 
-        // POST: Phim/Edit/5
+        // POST: Ghe/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MAPHIM,TENPHIM,THELOAI,THOILUONG,DIENVIENCHINH,KHOICHIEU,NGONNGU,XEPHANG,HINH")] PHIM pHIM)
+        public ActionResult Edit([Bind(Include = "ID,MAGHE,PHONGCHIEU_ID,RAP_ID,VITRI,LOAIGHE")] GHE gHE)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pHIM).State = EntityState.Modified;
+                db.Entry(gHE).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(pHIM);
+            ViewBag.PHONGCHIEU_ID = new SelectList(db.PHONGCHIEUs, "ID", "MAPH", gHE.PHONGCHIEU_ID);
+            return View(gHE);
         }
 
-        // GET: Phim/Delete/5
+        // GET: Ghe/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            GHE gHE = db.GHEs.Find(id);
+            if (gHE == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(gHE);
         }
 
-        // POST: Phim/Delete/5
+        // POST: Ghe/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PHIM pHIM = db.PHIMs.Find(id);
-            db.PHIMs.Remove(pHIM);
+            GHE gHE = db.GHEs.Find(id);
+            db.GHEs.Remove(gHE);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

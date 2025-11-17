@@ -1,0 +1,58 @@
+﻿@model QuanLyRapChieuPhim.Models.SUATCHIEU
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SUATCHIEU</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PHIM.MAPHIM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHIM.MAPHIM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MASUAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MASUAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYCHIEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYCHIEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIOCHIEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIOCHIEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOGHE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOGHE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

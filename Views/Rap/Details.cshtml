@@ -1,0 +1,42 @@
+﻿@model QuanLyRapChieuPhim.Models.RAP
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RAP</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MARAP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MARAP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TENRAP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENRAP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIACHI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIACHI)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

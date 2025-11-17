@@ -1,0 +1,66 @@
+﻿@model QuanLyRapChieuPhim.Models.VE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GHE.MAGHE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GHE.MAGHE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KHACHHANG.MAKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHACHHANG.MAKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUATCHIEU.MASUAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUATCHIEU.MASUAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAVE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAVE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYMUA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYMUA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIAVE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIAVE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

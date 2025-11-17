@@ -4,27 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace QuanLyRapChieuPhim.Controllers
+namespace WebQuanLyRapChieuPhim.Controllers 
 {
+    // Đảm bảo toàn bộ Controller này chỉ người đã đăng nhập mới vào được
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "Trang chủ";
+            ViewBag.WelcomeMessage = User.Identity.Name;
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

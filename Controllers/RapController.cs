@@ -11,107 +11,107 @@ using QuanLyRapChieuPhim.Models;
 
 namespace QuanLyRapChieuPhim.Controllers
 {
-    public class PhimController : Controller
+    public class RapController : Controller
     {
         private QuanLyRapChieuPhimContext db = new QuanLyRapChieuPhimContext();
 
-        // GET: Phim
+        // GET: Rap
         public ActionResult Index()
         {
-            return View(db.PHIMs.ToList());
+            return View(db.RAPs.ToList());
         }
 
-        // GET: Phim/Details/5
+        // GET: Rap/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            RAP rAP = db.RAPs.Find(id);
+            if (rAP == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(rAP);
         }
 
-        // GET: Phim/Create
+        // GET: Rap/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Phim/Create
+        // POST: Rap/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MAPHIM,TENPHIM,THELOAI,THOILUONG,DIENVIENCHINH,KHOICHIEU,NGONNGU,XEPHANG,HINH")] PHIM pHIM)
+        public ActionResult Create([Bind(Include = "ID,MARAP,TENRAP,DIACHI")] RAP rAP)
         {
             if (ModelState.IsValid)
             {
-                db.PHIMs.Add(pHIM);
+                db.RAPs.Add(rAP);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(pHIM);
+            return View(rAP);
         }
 
-        // GET: Phim/Edit/5
+        // GET: Rap/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            RAP rAP = db.RAPs.Find(id);
+            if (rAP == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(rAP);
         }
 
-        // POST: Phim/Edit/5
+        // POST: Rap/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MAPHIM,TENPHIM,THELOAI,THOILUONG,DIENVIENCHINH,KHOICHIEU,NGONNGU,XEPHANG,HINH")] PHIM pHIM)
+        public ActionResult Edit([Bind(Include = "ID,MARAP,TENRAP,DIACHI")] RAP rAP)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pHIM).State = EntityState.Modified;
+                db.Entry(rAP).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(pHIM);
+            return View(rAP);
         }
 
-        // GET: Phim/Delete/5
+        // GET: Rap/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            RAP rAP = db.RAPs.Find(id);
+            if (rAP == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(rAP);
         }
 
-        // POST: Phim/Delete/5
+        // POST: Rap/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PHIM pHIM = db.PHIMs.Find(id);
-            db.PHIMs.Remove(pHIM);
+            RAP rAP = db.RAPs.Find(id);
+            db.RAPs.Remove(rAP);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

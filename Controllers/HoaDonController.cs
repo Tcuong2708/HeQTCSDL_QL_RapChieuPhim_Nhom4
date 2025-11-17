@@ -11,107 +11,116 @@ using QuanLyRapChieuPhim.Models;
 
 namespace QuanLyRapChieuPhim.Controllers
 {
-    public class PhimController : Controller
+    public class HoaDonController : Controller
     {
         private QuanLyRapChieuPhimContext db = new QuanLyRapChieuPhimContext();
 
-        // GET: Phim
+        // GET: HoaDon
         public ActionResult Index()
         {
-            return View(db.PHIMs.ToList());
+            var hOADONs = db.HOADONs.Include(h => h.KHACHHANG).Include(h => h.NHANVIEN);
+            return View(hOADONs.ToList());
         }
 
-        // GET: Phim/Details/5
+        // GET: HoaDon/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            HOADON hOADON = db.HOADONs.Find(id);
+            if (hOADON == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(hOADON);
         }
 
-        // GET: Phim/Create
+        // GET: HoaDon/Create
         public ActionResult Create()
         {
+            ViewBag.KH_ID = new SelectList(db.KHACHHANGs, "ID", "MAKH");
+            ViewBag.NV_ID = new SelectList(db.NHANVIENs, "ID", "MANV");
             return View();
         }
 
-        // POST: Phim/Create
+        // POST: HoaDon/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MAPHIM,TENPHIM,THELOAI,THOILUONG,DIENVIENCHINH,KHOICHIEU,NGONNGU,XEPHANG,HINH")] PHIM pHIM)
+        public ActionResult Create([Bind(Include = "ID,MAHD,KH_ID,NV_ID,NGAYLAP,TONGTIEN")] HOADON hOADON)
         {
             if (ModelState.IsValid)
             {
-                db.PHIMs.Add(pHIM);
+                db.HOADONs.Add(hOADON);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(pHIM);
+            ViewBag.KH_ID = new SelectList(db.KHACHHANGs, "ID", "MAKH", hOADON.KH_ID);
+            ViewBag.NV_ID = new SelectList(db.NHANVIENs, "ID", "MANV", hOADON.NV_ID);
+            return View(hOADON);
         }
 
-        // GET: Phim/Edit/5
+        // GET: HoaDon/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            HOADON hOADON = db.HOADONs.Find(id);
+            if (hOADON == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            ViewBag.KH_ID = new SelectList(db.KHACHHANGs, "ID", "MAKH", hOADON.KH_ID);
+            ViewBag.NV_ID = new SelectList(db.NHANVIENs, "ID", "MANV", hOADON.NV_ID);
+            return View(hOADON);
         }
 
-        // POST: Phim/Edit/5
+        // POST: HoaDon/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MAPHIM,TENPHIM,THELOAI,THOILUONG,DIENVIENCHINH,KHOICHIEU,NGONNGU,XEPHANG,HINH")] PHIM pHIM)
+        public ActionResult Edit([Bind(Include = "ID,MAHD,KH_ID,NV_ID,NGAYLAP,TONGTIEN")] HOADON hOADON)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pHIM).State = EntityState.Modified;
+                db.Entry(hOADON).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(pHIM);
+            ViewBag.KH_ID = new SelectList(db.KHACHHANGs, "ID", "MAKH", hOADON.KH_ID);
+            ViewBag.NV_ID = new SelectList(db.NHANVIENs, "ID", "MANV", hOADON.NV_ID);
+            return View(hOADON);
         }
 
-        // GET: Phim/Delete/5
+        // GET: HoaDon/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PHIM pHIM = db.PHIMs.Find(id);
-            if (pHIM == null)
+            HOADON hOADON = db.HOADONs.Find(id);
+            if (hOADON == null)
             {
                 return HttpNotFound();
             }
-            return View(pHIM);
+            return View(hOADON);
         }
 
-        // POST: Phim/Delete/5
+        // POST: HoaDon/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PHIM pHIM = db.PHIMs.Find(id);
-            db.PHIMs.Remove(pHIM);
+            HOADON hOADON = db.HOADONs.Find(id);
+            db.HOADONs.Remove(hOADON);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

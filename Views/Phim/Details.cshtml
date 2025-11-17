@@ -1,0 +1,204 @@
+﻿@model QuanLyRapChieuPhim.Models.PHIM
+
+@{
+    ViewBag.Title = "Chi tiết phim";
+}
+
+<style>
+    .details-container {
+        padding: 25px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .details-header h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 15px;
+    }
+
+    .details-content {
+        display: flex;
+        flex-wrap: wrap; /* Cho phép xuống hàng trên màn hình nhỏ */
+        gap: 30px; /* Khoảng cách giữa 2 cột */
+    }
+
+    .details-poster {
+        width: 250px; /* Chiều rộng cố định của poster */
+        flex-shrink: 0;
+        position: relative;
+    }
+
+        .details-poster img {
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+
+    .details-info {
+        flex-grow: 1; /* Tự lấp đầy phần còn lại */
+        flex-basis: 400px; /* Xuống hàng nếu không đủ 400px */
+    }
+
+        .details-info h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+        /* Style cho danh sách thông tin (giống trong hình) */
+        .details-info dl {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .details-info dt {
+            font-weight: 700;
+            color: #333;
+            width: 120px; /* Cố định chiều rộng của Tiêu đề (Đạo diễn,...) */
+            float: left;
+            clear: left;
+            margin-bottom: 12px;
+        }
+
+        .details-info dd {
+            margin-left: 130px; /* Đẩy nội dung ra */
+            margin-bottom: 12px;
+            color: #555;
+        }
+
+    .details-buttons {
+        margin-top: 30px;
+        display: flex;
+        gap: 10px;
+    }
+    /* Style cho nhãn T16 (lấy từ file Admin.css) */
+    .age-rating-details {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #d90000;
+        color: white;
+        padding: 5px 8px;
+        font-weight: bold;
+        font-size: 16px;
+        border: 1.5px solid white;
+        z-index: 2;
+    }
+
+    /* Mô tả phim (phần text dài ở dưới) */
+    .movie-description {
+        margin-top: 30px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+    }
+
+        .movie-description h4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .movie-description p {
+            line-height: 1.7;
+            color: #444;
+        }
+</style>
+
+
+<!-- 2. NỘI DUNG HTML ĐÃ THIẾT KẾ LẠI -->
+<div class="details-container">
+
+    <div class="details-header">
+        <h2>Nội Dung Phim</h2>
+    </div>
+
+    <div class="details-content">
+
+        <!-- CỘT BÊN TRÁI (POSTER) -->
+        <div class="details-poster">
+            <!-- (Sửa: Đảm bảo đường dẫn HINH đúng) -->
+            <img src="@Url.Content("~/" + Model.HINH)" alt="@Model.TENPHIM" />
+            @if (!string.IsNullOrEmpty(Model.XEPHANG))
+            {
+                <span class="age-rating-details">@Model.XEPHANG</span>
+            }
+        </div>
+
+        <!-- CỘT BÊN PHẢI (THÔNG TIN) -->
+        <div class="details-info">
+            <h1>@Html.DisplayFor(model => model.TENPHIM)</h1>
+
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.THELOAI)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.THELOAI)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DIENVIENCHINH)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DIENVIENCHINH)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.KHOICHIEU)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.KHOICHIEU, "{0:dd/MM/yyyy}")
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.THOILUONG)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.THOILUONG)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NGONNGU)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NGONNGU)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.XEPHANG)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.XEPHANG)
+                </dd>
+            </dl>
+
+            <!-- CÁC NÚT HÀNH ĐỘNG (ADMIN) -->
+            <div class="details-buttons">
+                <a href="@Url.Action("Edit", new { id = Model.ID })" class="btn btn-primary">
+                    <i class="fas fa-pen"></i> Chỉnh sửa
+                </a>
+                <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    Quay lại danh sách
+                </a>
+            </div>
+
+        </div> <!-- Hết .details-info -->
+    </div> <!-- Hết .details-content -->
+    <!-- PHẦN MÔ TẢ (GIỐNG TRONG HÌNH) -->
+    <div class="movie-description">
+        <h4>Mô tả</h4>
+        <p>
+            @* CSDL của bạn không có cột "Mô tả".
+                Bạn nên thêm cột MO_TA (NVARCHAR(MAX)) vào bảng PHIM
+                và cập nhật Model PHIM.cs để hiển thị ở đây.
+                Đây là nội dung mẫu:
+            *@
+            "Đã bao lâu rồi bạn chưa du lịch cùng bạn thân?" Nhóm bạn nỗi khổ của Tae Jeong, Do Jin, Yeon Min và Geum Bok đã ấp ủ một chuyến du lịch cùng nhau ngay sau khi tốt nghiệp cấp III, thế nhưng rốt cuộc vì thế này thế kia mà cả bọn đã lỡ hẹn. Hơn mười năm sau, người phải “bán mình cho tư bản”, người thì xuất gia, người đi định cư, có người lại mắc cả bệnh tâm lý. Nhưng nhóm “bốn thằng cốt” vẫn quyết định cùng nhau thực hiện lời hứa chuyến xuất ngoại đầu tiên. Bốn “anh trai say xe” này đã quậy tung Bangkok, biển “chuyến đi đầu tiên” thành một kỉ niệm nhớ đời với vô vàn kịch tính lẫn tiếng cười, nước mắt...
+        </p>
+    </div>
+
+</div>
