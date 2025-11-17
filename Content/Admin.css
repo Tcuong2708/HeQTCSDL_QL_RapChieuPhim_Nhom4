@@ -1,0 +1,135 @@
+﻿/*
+================================================================================
+BỔ SUNG CSS CHO CÁC TRANG CRUD
+(Dán code này vào cuối file /Content/Admin.css)
+================================================================================
+*/
+
+/* 1. Style cho các trang Form (Create, Edit, Delete) */
+.form-card,
+.details-card,
+.delete-card {
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 25px 30px;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* 2. Căn chỉnh lề cho Form (Bootstrap) */
+.form-horizontal .form-group {
+	margin-bottom: 20px;
+}
+
+.form-horizontal .control-label {
+	font-weight: 600;
+	color: #555;
+}
+
+.form-actions {
+	margin-top: 30px;
+	border-top: 1px solid #eee;
+	padding-top: 20px;
+	display: flex;
+	gap: 10px;
+}
+
+/* 3. Style cho trang Bảng (Index) */
+.content-table {
+	width: 100%;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+	overflow: hidden; /* Giữ bo góc cho table */
+}
+
+	.content-table .table {
+		margin-bottom: 0;
+	}
+
+		.content-table .table thead th {
+			background-color: #f8f9fa;
+			font-size: 13px;
+			font-weight: 600;
+			text-transform: uppercase;
+			color: #555;
+			border-bottom: 2px solid #dee2e6;
+			padding: 15px;
+		}
+
+		.content-table .table tbody td {
+			padding: 15px;
+			vertical-align: middle;
+			color: #444;
+		}
+
+		.content-table .table tbody tr:hover {
+			background-color: #fdfaf3; /* Màu nền giống Dashboard */
+		}
+
+/* 4. Style cho các nút Sửa/Chi tiết/Xóa (trong bảng) */
+:root {
+	--primary-color: #007bff;
+	--danger-color: #dc3545;
+	--success-color: #28a745;
+	--info-color: #17a2b8;
+}
+
+.btn-xs {
+	padding: 4px 10px;
+	font-size: 13px;
+	border: none;
+	border-radius: 4px;
+	color: white !important;
+	text-decoration: none !important;
+	display: inline-block;
+	transition: opacity 0.3s;
+}
+
+	.btn-xs:hover {
+		color: white;
+		opacity: 0.8;
+	}
+
+.btn-edit {
+	background-color: var(--success-color);
+}
+
+.btn-detail {
+	background-color: var(--info-color);
+}
+
+.btn-delete {
+	background-color: var(--danger-color);
+}
+
+td.action-buttons {
+	display: flex;
+	gap: 5px;
+	white-space: nowrap;
+}
+
+/* 5. Style cho trang Chi tiết (Details) */
+.details-card dl {
+	font-size: 1.1rem;
+	line-height: 1.8;
+}
+
+.details-card dt {
+	font-weight: 700;
+	color: #333;
+	width: 150px;
+	float: left;
+	clear: left;
+}
+
+.details-card dd {
+	margin-left: 170px;
+	margin-bottom: 10px;
+	color: #555;
+}
+
+/* 6. Style cho trang Xóa (Delete) */
+.delete-warning {
+	color: var(--danger-color);
+	font-weight: 600;
+}

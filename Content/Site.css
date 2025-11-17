@@ -512,3 +512,324 @@ body {
 
 /* ▼▼ THAY ĐỔI 3: XÓA BỎ KHỐI CSS CŨ ▼▼ */
 /* Khối .movie-links, .btn-link-edit... đã bị XÓA BỎ khỏi đây */
+
+
+
+/*Trang đăng nhập*/
+/* Importing Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 15px;
+    background: #1abc9c;
+    overflow: hidden;
+}
+
+.wrapper {
+    max-width: 500px;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+    .wrapper .title {
+        height: 120px;
+        background: #16a085;
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        font-size: 30px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrapper form {
+        padding: 25px 35px;
+    }
+
+        .wrapper form .row {
+            height: 60px;
+            margin-top: 15px;
+            position: relative;
+        }
+
+            .wrapper form .row input {
+                height: 100%;
+                width: 100%;
+                outline: none;
+                padding-left: 70px;
+                border-radius: 5px;
+                border: 1px solid lightgrey;
+                font-size: 18px;
+                transition: all 0.3s ease;
+            }
+
+form .row input:focus {
+    border-color: #16a085;
+}
+
+form .row input::placeholder {
+    color: #999;
+}
+
+.wrapper form .row i {
+    position: absolute;
+    width: 55px;
+    height: 100%;
+    color: #fff;
+    font-size: 22px;
+    background: #16a085;
+    border: 1px solid #16a085;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper form .pass {
+    margin-top: 12px;
+}
+
+    .wrapper form .pass a {
+        color: #16a085;
+        font-size: 17px;
+        text-decoration: none;
+    }
+
+        .wrapper form .pass a:hover {
+            text-decoration: underline;
+        }
+
+.wrapper form .button input {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 0px;
+    background: #16a085;
+    border: 1px solid #16a085;
+    cursor: pointer;
+}
+
+form .button input:hover {
+    background: #12876f;
+}
+
+.wrapper form .signup-link {
+    text-align: center;
+    margin-top: 45px;
+    font-size: 17px;
+}
+
+    .wrapper form .signup-link a {
+        color: #16a085;
+        text-decoration: none;
+    }
+
+form .signup-link a:hover {
+    text-decoration: underline;
+}
+
+/*CRUD*/
+
+/* =================================================================
+   PHẦN CSS CHO CRUD (TỪ FILE ADMIN_CRUD_STYLES.CSS)
+   ================================================================= */
+
+/* 1. Header chung cho các trang CRUD */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .content-header h1 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+/* 2. Nút bấm (Buttons) */
+.btn {
+    display: inline-block;
+    font-weight: 600;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none !important;
+}
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+    .btn i {
+        margin-right: 5px;
+    }
+
+.btn-primary {
+    color: #fff !important;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary {
+    color: #fff !important;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-danger {
+    color: #fff !important;
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+/* 3. Style cho các trang Form (Create, Edit, Delete) */
+.form-card,
+.details-card,
+.delete-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.form-horizontal .form-group {
+    margin-bottom: 20px;
+}
+
+.form-horizontal .control-label {
+    font-weight: 600;
+    color: #555;
+    padding-top: 7px; /* Căn giữa với input */
+}
+/* Ghi đè lại max-width 280px mặc định */
+.form-horizontal input.form-control,
+.form-horizontal select.form-control,
+.form-horizontal textarea.form-control {
+    max-width: 100%;
+}
+
+.form-actions {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* 4. Style cho trang Bảng (Index) */
+.content-table {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden; /* Giữ bo góc cho table */
+}
+
+    .content-table .table {
+        margin-bottom: 0;
+    }
+
+        .content-table .table thead th {
+            background-color: #f8f9fa;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #555;
+            border-bottom: 2px solid #dee2e6;
+            padding: 15px;
+        }
+
+        .content-table .table tbody td {
+            padding: 15px;
+            vertical-align: middle;
+            color: #444;
+        }
+
+        .content-table .table tbody tr:hover {
+            background-color: #fdfaf3; /* Màu nền giống Dashboard */
+        }
+
+/* 5. Style cho các nút Sửa/Chi tiết/Xóa (trong bảng) */
+.btn-xs {
+    padding: 4px 10px;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    color: white !important;
+    text-decoration: none !important;
+    display: inline-block;
+    transition: opacity 0.3s;
+}
+
+    .btn-xs:hover {
+        color: white;
+        opacity: 0.8;
+    }
+
+.btn-edit {
+    background-color: var(--success-color);
+}
+
+.btn-detail {
+    background-color: var(--info-color);
+}
+
+.btn-delete {
+    background-color: var(--danger-color);
+}
+
+td.action-buttons {
+    display: flex;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+/* 6. Style cho trang Chi tiết (Details) */
+.details-card dl.dl-horizontal {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.details-card dt {
+    font-weight: 700;
+    color: #333;
+    width: 150px;
+    float: left;
+    clear: left;
+    text-align: left; /* Ghi đè bootstrap */
+}
+
+.details-card dd {
+    margin-left: 170px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* 7. Style cho trang Xóa (Delete) */
+.delete-warning {
+    color: var(--danger-color);
+    font-weight: 600;
+}
